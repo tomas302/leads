@@ -18,3 +18,13 @@ exports.show_leads = function(req, res, next) {
         res.render('landing', { title: 'Express', leads: leads });
     }).catch(error => console.log(error) );
 };
+
+exports.show_lead = function(req, res, next) {
+    return models.Lead.findOne({
+        where: {
+            id: req.params.lead_id
+        }
+    }).then(lead => {
+        res.render('lead', { lead: lead })
+    });
+};
